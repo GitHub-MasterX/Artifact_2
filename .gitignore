@@ -1,0 +1,20 @@
+#Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+.env/
+
+#Raw syscall traces
+*.txt
+*.log
+#OS junk
+.DS_Store
+Thumbs.db
+
+#.vscode/
+./idea
+
+# Temporary results
+*.tmp
