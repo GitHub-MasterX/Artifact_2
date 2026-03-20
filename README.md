@@ -114,6 +114,6 @@ To reproduce this experiment:
 
 The dervied behavioral interpretation:-
 
-High priv + low recon   ->  may indicate stronger anomalous behavior
-Low priv + low recon    ->  may indicate beingn or low-signal behavior
-High priv + high recon  ->  may indicate controlled or expected privileged                                   behavior 
+- High priv + low recon   ->  may indicate stronger anomalous behavior
+- Low priv + low recon    ->  may indicate beingn or low-signal behavior
+- High priv + high recon  ->  may indicate controlled or expected privileged                                   behavior 
