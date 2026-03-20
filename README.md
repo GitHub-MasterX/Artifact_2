@@ -2,13 +2,14 @@
 
 ## Overview
 
-This artifact extends the behavioral telemetry study from Artifact 1 by focusing on __process-level behavioral profiling__. The objective is to observe how different processes interact with the operating system through system calls and to analyze behavioral differences between distinct execution contexts.
+Building on ARTIFACT 1 we are going to analyze the deviations in the syscall sequences under different behavioral scenrios such as privilege commands and the commands used for environment probing are used and compare them with normal execution, to to  quantify the deviations using mismatch and coverage metrics
 
-By tracing system calls during program execution and transforming raw traces into structured datasets, this artifact aims to identify patterns that characterize __normal system activity and potentially anomalous behavior__.
+By tracing syscall execution and transforming them into structured datasets, this artifact tries to identify patterns that characterize __normal system activity and potentially anomalous behavior__.
 
-The syscalls straced for this artifact are mainly focussed on scenarios desgined to simulate privilege-impacting and exploratory behaviors where both the case that is single-command and multiple-command execution modes for both the type are taken into consideration
+The syscalls collected for this artifact are mainly focussed on scenarios designed to simulate privilege-impacting and exploratory behaviors covering both single-command and multi-command execution modes
 
-Behavior is analyzed using sliding window-based syscall sequence comparison. Sequences are evaluted using mismatch and coverage metrics relative to baseline behavior 
+Behavior is analyzed using sliding window-based syscall sequence comparison. 
+Sequences are evaluated using mismatch and coverage metrics relative to baseline behavior 
 
 ---
 
@@ -16,7 +17,7 @@ Behavior is analyzed using sliding window-based syscall sequence comparison. Seq
 
 - Capture syscall traces under predefined behavioral scenarios (normal, recon, priv)
 - Extract structured telemetry from raw syscall logs.
-- Compare them with the syscall logs in normal condition 
+- Compare them against baseline syscall traces from normal execution 
 - Identify syscall distribution differences between normal and modified program behavior(priv and recon scenarios under single-command and multiple-command execution modes).
 - Visualize behavioral differences through graphical analysis.
 
@@ -77,7 +78,7 @@ The collected telemetry was analyzed to observe:
 
 This analysis helps reveal __how program behavior can be represented through syscall telemetry patterns.__
 
-These observations are dervied from sequence-level comparisons using sliding window-based mismatch and coverage metrics
+These observations are derived from sequence-level comparisons using sliding window-based mismatch and coverage metrics
 
 ---
 
@@ -87,7 +88,7 @@ Behavioral patterns were visualized using two plots:
 
 __Coverage Plot__  - proportion of sequences matching baseline behavior
 
-__Mismatch Plot__ - Highlights deviations between expected and observed behavior patterns. These visualizations provide an interpretable view of behavioral differences in system execution.
+__Mismatch Plot__ - highlights deviations between expected and observed behavior patterns. These visualizations provide an interpretable view of behavioral differences in system execution.
 
 ---
 
@@ -112,7 +113,7 @@ To reproduce this experiment:
 
 ## Security Relevance
 
-The dervied behavioral interpretation:-
+The derived behavioral interpretation:-
 
 - High priv + low recon   ->  may indicate stronger anomalous behavior
 - Low priv + low recon    ->  may indicate beingn or low-signal behavior
