@@ -6,14 +6,18 @@ This artifact extends the behavioral telemetry study from Artifact 1 by focusing
 
 By tracing system calls during program execution and transforming raw traces into structured datasets, this artifact aims to identify patterns that characterize __normal system activity and potentially anomalous behavior__.
 
+The syscalls straced for this artifact are mainly focussed on scenarios desgined to simulate privilege-impacting and exploratory behaviors where both the case that is single-command and multiple-command execution modes for both the type are taken into consideration
+
+Behavior is analyzed using sliding window-based syscall sequence comparison. Sequences are evaluted using mismatch and coverage metrics relative to baseline behavior 
+
 ---
 
 ## Objectives
 
-- Capture process-level system call traces using _strace_.
+- Capture syscall traces under predefined behavioral scenarios (normal, recon, priv)
 - Extract structured telemetry from raw syscall logs.
-- Compare behavioral patterns between different execution scenarios.
-- Identify syscall distribution differences between normal and modified program behavior.
+- Compare them with the syscall logs in normal condition 
+- Identify syscall distribution differences between normal and modified program behavior(priv and recon scenarios under single-command and multiple-command execution modes).
 - Visualize behavioral differences through graphical analysis.
 
 ---
@@ -73,21 +77,17 @@ The collected telemetry was analyzed to observe:
 
 This analysis helps reveal __how program behavior can be represented through syscall telemetry patterns.__
 
+These observations are dervied from sequence-level comparisons using sliding window-based mismatch and coverage metrics
+
 ---
 
 ## Visualization
 
 Behavioral patterns were visualized using two plots:
 
-__Coverage Plot__
+__Coverage Plot__  - proportion of sequences matching baseline behavior
 
-Displays the distribution of system calls across execution sessions.
-
-__Mismatch Plot__
-
-Highlights deviations between expected and observed behavior patterns.
-
-These visualizations provide an interpretable view of behavioral differences in system execution.
+__Mismatch Plot__ - Highlights deviations between expected and observed behavior patterns. These visualizations provide an interpretable view of behavioral differences in system execution.
 
 ---
 
@@ -112,11 +112,8 @@ To reproduce this experiment:
 
 ## Security Relevance
 
-Process-level behavioral telemetry is widely used in:
+The dervied behavioral interpretation:-
 
-- intrusion detection systems
-- behavioral malware detection
-- runtime monitoring systems
-- honeypot telemetry analysis
-
-This artifact demonstrates how syscall traces can serve as a foundation for __behavior-based security analysis.__
+High priv + low recon   ->  may indicate stronger anomalous behavior
+Low priv + low recon    ->  may indicate beingn or low-signal behavior
+High priv + high recon  ->  may indicate controlled or expected privileged                                   behavior 
